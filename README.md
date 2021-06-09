@@ -1,4 +1,4 @@
-# groep 2: Jung Ho, Rutger, Armin
+# Groep 2: Jung Ho, Rutger, Armin
 Dit is de githubpagina voor dataintegratie van groepje 2
 
 Het doel van dit project was het maken van een workflow.

@@ -34,12 +34,13 @@ java -jar SnpSift.jar filter "ANN[0].EFFECT has 'missense_variant'" examples/tes
 
 # Usagi
 
+De data uit de pdf files is handmatig in een csv bestand gezet.
+
 Om de data te mappen naar het OMOP Datamodel wilden we Usagi gebruiken. 
 We hebben daarvoor vocabulary files van Athena gedownload en deze in usagi geladen.
 
-Dit verliep niet echt soepel, Usagi gaf telkens een error terug waarin stond dat er niet genoeg ruimte was.
-
-hier liepen we vast omdat we niet precies begrepen wat de precies de bedoeling was van het mappen en hoe Usagi precies werkt.
+Dit verliep niet echt soepel, Usagi gaf telkens een error terug waarin stond dat er niet genoeg ruimte was (dit is uiteindelijk wel gelukt).
+Hier liepen we vast omdat we niet precies begrepen wat de precies de bedoeling was van het mappen en hoe Usagi precies werkt.
 
 # Database
 

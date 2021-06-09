@@ -11,3 +11,5 @@ Om de data in te laden en te annoteren hebben we gebruik gemaakt van UseGalaxy;
 Met galaxy hebben we geprobeerd de data in te laden, te filteren op chromosoom 21 en deze te annoteren.
 
 
+
+

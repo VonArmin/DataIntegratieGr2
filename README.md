@@ -1,5 +1,5 @@
 # groep 2: Jung Ho, Rutger, Armin
-Dit is de githubpagina voor dataintergatie van groepje 2
+Dit is de githubpagina voor dataintegratie van groepje 2
 
 Het doel van dit project was het maken van een workflow.
 De workflow moet VCF data inladen, deze annoteren, mappen naar het OMOP model en deze in een database zetten.

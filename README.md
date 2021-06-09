@@ -44,4 +44,11 @@ Hier liepen we vast omdat we niet precies begrepen wat de precies de bedoeling w
 
 # Database
 
-Om de data in de database te zetten hebben we gebruik gemaakt van een python script.
+Het is ons niet gelukt om de data te mappen naar het OMOP CDM.
+We zijn wel begonnen aan een python script om verbinding te maken en queries uit te voeren om de data er in te zetten.
+Het script is niet compleetomdat we niet echt konden testen met de juiste data, de queries die er in staan werken wel.
+
+# De Workflow
+
+Omdat het via galaxy niet lukte en we daar eigenlijk te lang mee door zijn gegaan zijn we in tijdsnood gekomen.
+Dit heeft er toe geleid dat we niet echt een complete workflow kunnen maken, toch hebben we goed kennis gemaakt met workflowmanagers.

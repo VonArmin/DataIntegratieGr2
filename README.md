@@ -42,7 +42,7 @@ hier liepen we vast omdat we niet precies begrepen wat de precies de bedoeling w
 
 # Database
 
-om de data in de databse te zetten hebben we gebruik gemaakt van een python script.
+Om de data in de database te zetten hebben we gebruik gemaakt van een python script.
 
 
 

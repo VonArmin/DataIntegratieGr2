@@ -7,6 +7,7 @@ De workflow moet VCF data inladen, deze annoteren, mappen naar het OMOP model en
 # UseGalaxy
 Om de data in te laden en te annoteren hebben we gebruik gemaakt van UseGalaxy;
 [Link naar galaxy workflow](https://usegalaxy.org/u/armin1994/w/dataintegratie)
+(om de workflow te bekijken moet je even op import workflow rechtsbovenin klikken)
 
 Met galaxy hebben we geprobeerd de data in te laden, te filteren op chromosoom 21 en deze te annoteren.
 
@@ -21,12 +22,14 @@ Omdat de tools niet correct leken te werken zijn we zonder UseGalaxy veder gegaa
 
 We hebben alleen de gefilterde data uit UseGalaxy gebruikt om mee verder te werken.
 
-# annotatie
+# Annotatie
 
 We hebben de data via de commandline met SnpEff geannoteerd, dat werkte wel:
+
 java -jar -Xmx8g -jar snpEff.jar -v GRCh37.75  patient_file12.csv > patient_file12.ann.csv
 
 vervolgens zijn dmv SnpSift de missense varianten opgeslagen:
+
 java -jar SnpSift.jar filter "ANN[0].EFFECT has 'missense_variant'" examples/test.chr22.ann.vcf > test.chr22.ann.filter_missense_first.vcf
 
 # Usagi

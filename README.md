@@ -1,8 +1,38 @@
-# Groep 2: Jung Ho, Rutger, Armin
-Dit is de githubpagina voor dataintegratie van groepje 2
+# Werkende applicatie Data Integratie (BI10T-ApD - kans 2)
 
-Het doel van dit project was het maken van een workflow.
-De workflow moet VCF data inladen, deze annoteren, mappen naar het OMOP model en deze in een database zetten.
+# Groep 2
+- Projectleden
+  - Armin van Eldik
+  - Jung Ho Loos
+  - Rutger Kemperman
+
+# Opdrachtomschrijving
+Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst.
+
+# Workflow
+- UseGalaxy
+  - UseGalaxy is origineel gebruikt om de data in te laden en te annoteren. 
+  - De input data (Patiënten .csv files) zijn ingeladen in UseGalaxy en vervolgens gefilterd op chromosoom 21 met bcftools filter 
+  - De gefilterde data is vervolgens in SnpEff gepiped om geannoteerd te worden.
+  - Handmatig is er gecontroleerd of de data correct geannoteerd was, helaas werkte SnpEff niet in Galaxy.
+  - Wegens tekortkomingen in Galaxy is er vervolgens voor gekozen om de workflow uit te werken in bash met python. 
+
+- Bash uitwerking
+  - De workflow is vervolgens uitgebreider uitgewerkt in bash.
+
+
+
+# Requirements
+Gezien de flow van het project grotendeels plaats vindt in bash zijn er een aantal vereisten voor het script om uitgevoerd te kunnen worden. 
+
+- Linux Ubuntu omgeving versie 18.04 of 20.04
+- Samtools moet geïnstalleerd staan (versie 10.2 of nieuwer) (to be verified)
+- SnpEff moet geïnstalleerd en sourced zijn (Versie 5.0e of nieuwer)
+- De vocabularies gebruikt om te mappen moeten gedownload zijn van Athena:
+  - ID 1: OMOP Gender
+  - ID 12: Race and ethnicity Code Set (USBC)
+  - ID 13: Systemetic Nomenclature of Medicine - Clinical Terms (HTSDO) (SNOMED)
+  - ID 139: Human Gene Nomenclature (European Bioinformatics Institute) (HGNC)
 
 # UseGalaxy
 Om de data in te laden en te annoteren hebben we gebruik gemaakt van UseGalaxy;

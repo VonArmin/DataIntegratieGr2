@@ -37,6 +37,15 @@ Input: De pipeline bestaat uit .vcf files met patiënten data.
 - De .vcf files dienen in dezelfde directory te staan als de pipeline.
 Output: De output van de pipeline zijn gevulde measurements, person, en condition_occurrence tabellen in de postgres PostgreSQL database.
 
+# Mappen met Usagi
+Uiteindelijk is Usagi gebruikt om de patiëntendata uit de vcf files te mappen tegen de SNOMED, gender en race vocabularies verkregen uit Athena. Gezien Usagi een tool met een GUI is, is deze stap handmatig uitgevoerd. In de stappen hieronder staat beschreven hoe het mappen van concept IDs naar de sourcecode is gedaan.
+- Stap 1: Als eerste vereist Usagi dat er een index gebuild wordt om het mappen te kunnen uitvoeren. Hiervoor moet de gedownloade vocabulary uitgepakt zijn. Laadt de directory waarin de vocabularies staan in Usagi zodat hiermee de index gebuild kan worden. 
+  - Usagi zal dan de index gaan bouwen, sluit wanneer deze hiermee klaar is Usagi af, en start deze vervolgens opnieuw op. 
+- Stap 2: De index is gebuild, nu kan er een eigen file ingeladen worden. Ga hiervoor naar File > Import codes, en selecteer een file waarmee gemapt kan worden. 
+- Stap 3: Usagi vergelijkt per source de ingeladen filedata met de beschikbare vocabularies en wijst vervolgens automatisch het concept uit de vocabulaire met de hoogste score aan de source data toe. Handmdatig kunnen meerdere concepten toegevoegd worden aan iedere source, dit is niet verplicht.
+- Stap 4: Vervolgens dienen deze concepten manueel gecureerd te worden, dit wordt gedaan door de concepten wel of niet goed te keuren. In Usagi kunnen de concepten die toegekend zijn aan de ingeladen sourcedata handmatig gevalideerd worden door op de "Approve" knop te drukken, nu zijn de concepten gemapt naar de source data.
+- Stap 5: De concept data kan nu geëxporteerd worden naar een csv file door naar File > Save As... te gaan en de file op te slaan.
+
 # Requirements
 Gezien de flow van het project grotendeels plaats vindt in bash zijn er een aantal vereisten voor het script om uitgevoerd te kunnen worden. 
 

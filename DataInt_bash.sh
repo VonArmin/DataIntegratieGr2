@@ -11,6 +11,7 @@ snpeff="/home/armin/Downloads/Data_integratie/snpEff_latest_core/snpEff/snpEff.j
 snpsft="/home/armin/Downloads/Data_integratie/snpEff_latest_core/snpEff/SnpSift.jar"
 pythonex="extract_versions.py"
 pythondb="DB_connect.py"
+pythoninsert="Fill_measurement.py"
 usagi="Usagi_v1.4.3.jar"
 
 main()
@@ -57,8 +58,7 @@ pipeline()
 		# java -jar $usagi
 
 		print "(8/8) Starting DB insertion"
-		python3 $pythondb
-
+		python3 $pythoninsert
 		echo "----------------------------- JOB DONE -----------------------------"
 
 	done

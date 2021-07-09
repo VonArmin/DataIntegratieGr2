@@ -24,7 +24,7 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
 # Hoe gebruik je de pipeline?
 De pipeline bestaat uit een bashscript dat aangeroepen dient te worden vanaf de linux commandline.
 -  Commando om de pipeline uit te voeren: $ bash /pipeline.sh
-Input: De pipeline bestaat uit .vcf files met patiënten data. 
+Input: De pipeline bestaat uit .vcf files met patiënten data en een .csv file met informatie over de patienten zelf 
 - De .vcf files bevatten de 8 standaard velden aanwezig in het .vcf file formaat, die informatie over de patiënten beschrijven. Deze velden bevatten:
   - Chromosoom nummer.
   - Positie op het chromosoom.
@@ -35,6 +35,18 @@ Input: De pipeline bestaat uit .vcf files met patiënten data.
   - FILTER: Definieert of een gemaakte call alle filters heeft doorlopen. In het geval alle filters doorlopen zijn geeft dit een PASS aan, anders wordt de filter die niet gepasseerd is aangegeven in dit veld.  
   - INFO: Dit veld is gevuld met extra informatie omtrent de aangetroffen mutatie. 
 - De .vcf files dienen in dezelfde directory te staan als de pipeline.
+- De .csv file bevat 11 colommen die informatie over de patienten zelf beschrijven. Deze colommen zijn:
+  - Particpant
+  - Birth month
+  - Birth year
+  - Sex
+  - Ethnicity
+  - Blood type
+  - Blood pressure (mmHg)
+  - Weight (kg)
+  - Height (cm)
+  - Body type 
+  - Conditions or Symptom
 Output: De output van de pipeline zijn gevulde measurements, person, en condition_occurrence tabellen in de postgres PostgreSQL database.
 
 # Mappen met Usagi

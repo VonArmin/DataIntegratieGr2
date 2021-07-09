@@ -1,10 +1,10 @@
 # Werkende applicatie Data Integratie (BI10T-ApD - kans 2)
 
 # Groep 2
-- Projectleden
-  - Armin van Eldik
-  - Jung Ho Loos
-  - Rutger Kemperman
+Projectleden
+- Armin van Eldik
+- Jung Ho Loos
+- Rutger Kemperman
 
 # Opdrachtomschrijving
 Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst.
@@ -18,7 +18,16 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
   - Wegens tekortkomingen in Galaxy is er vervolgens voor gekozen om de workflow uit te werken in bash met python. 
 
 - Bash uitwerking
-  - De workflow is vervolgens uitgebreider uitgewerkt in bash.
+  - De workflow is vervolgens uitgebreider uitgewerkt in bash. Door het bash script aan te roepen voert het automatisch alle stappen uit van .vcf file patiënten data als input tot gemapte data in postgresql tabellen als output. Dit process wordt volledig als een soort van pipeline uitgevoerd met als enige interruptie het toewijzen van concepten aan source data en handmatige controle hierop. 
+  - Het proces dat doorlopen wordt door de bashfile is alsvolgt:
+    - Door het bash script aan te roepen worden als eerste de locaties (paths) van de patiënten .vcf files opgeslagen in een object voor later gebruik. 
+    - Met grep worden uit iedere file alleen de data op chromosoom 21 opgeslagen en naar een output.vcf bestand geparsed.
+    - Vervolgens wordt met SnpEff -ann de data geannoteerd, zie hiervoor het onderstaande voorbeeld commando:
+    ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf```
+    - Deze data is dan geannoteerd. Na het annoteren van de patiënten data wordt deze met SnpSift filter gefilterd op "missense_variant" en "frameshift_variant". Zie ook hiervoor het onderstaande voorbeeld commando:
+    ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf`
+    - sample text
+
 
 
 # Hoe gebruik je de pipeline?
@@ -53,10 +62,10 @@ Output: De output van de pipeline zijn gevulde measurements, person, en conditio
 Uiteindelijk is Usagi gebruikt om de patiëntendata uit de vcf files te mappen tegen de SNOMED, gender en race vocabularies verkregen uit Athena. Gezien Usagi een tool met een GUI is, is deze stap handmatig uitgevoerd. In de stappen hieronder staat beschreven hoe het mappen van concept IDs naar de sourcecode is gedaan.
 - Stap 1: Als eerste vereist Usagi dat er een index gebuild wordt om het mappen te kunnen uitvoeren. Hiervoor moet de gedownloade vocabulary uitgepakt zijn. Laadt de directory waarin de vocabularies staan in Usagi zodat hiermee de index gebuild kan worden. 
   - Usagi zal dan de index gaan bouwen, sluit wanneer deze hiermee klaar is Usagi af, en start deze vervolgens opnieuw op. 
-- Stap 2: De index is gebuild, nu kan er een eigen file ingeladen worden. Ga hiervoor naar File > Import codes, en selecteer een file waarmee gemapt kan worden. 
+- Stap 2: De index is gebuild, nu kan er een eigen file ingeladen worden. Ga hiervoor naar "File" > "Import codes", en selecteer een file waarmee gemapt kan worden. 
 - Stap 3: Usagi vergelijkt per source de ingeladen filedata met de beschikbare vocabularies en wijst vervolgens automatisch het concept uit de vocabulaire met de hoogste score aan de source data toe. Handmdatig kunnen meerdere concepten toegevoegd worden aan iedere source, dit is niet verplicht.
 - Stap 4: Vervolgens dienen deze concepten manueel gecureerd te worden, dit wordt gedaan door de concepten wel of niet goed te keuren. In Usagi kunnen de concepten die toegekend zijn aan de ingeladen sourcedata handmatig gevalideerd worden door op de "Approve" knop te drukken, nu zijn de concepten gemapt naar de source data.
-- Stap 5: De concept data kan nu geëxporteerd worden naar een csv file door naar File > Save As... te gaan en de file op te slaan.
+- Stap 5: De concept data kan nu geëxporteerd worden naar een csv file door naar "File" > "Save As..." te gaan en de file op te slaan.
 
 # Requirements
 Gezien de flow van het project grotendeels plaats vindt in bash zijn er een aantal vereisten voor het script om uitgevoerd te kunnen worden. 

@@ -7,7 +7,8 @@ Projectleden
 - Rutger Kemperman
 
 # Opdrachtomschrijving
-Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst.
+Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst. 
+- patiënten data van website: 
 
 # Workflow
 - UseGalaxy
@@ -23,15 +24,35 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
     - Door het bash script aan te roepen worden als eerste de locaties (paths) van de patiënten .vcf files opgeslagen in een object voor later gebruik. 
     - Met grep worden uit iedere file alleen de data op chromosoom 21 opgeslagen en naar een output.vcf bestand geparsed.
     - Vervolgens wordt met SnpEff -ann de data geannoteerd, zie hiervoor het onderstaande voorbeeld commando:
-    - 
-    ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf```
-    
-    - Deze data is dan geannoteerd. Na het annoteren van de patiënten data wordt deze met SnpSift filter gefilterd op "missense_variant" en "frameshift_variant". Zie ook hiervoor het onderstaande voorbeeld commando:
-    - 
-    ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf``` 
-    
-    - sample text
 
+    ``` 		java -jar $snpeff GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose "${file}_chr21.vcf" > "${file}_ann.vcf"
+    ```
+    
+    - Deze data is dan geannoteerd. Na het annoteren van de patiënten data wordt deze met SnpSift filter gefilterd op "missense_variant" en "frameshift_variant", dit wordt sequentieel met 2 commando's uitgevoerd. Dit resulteert in 2 files ieder met unieke varianten die bij elkaar gevoegd moeten worden.  
+    - Onderstaand het commando voor het filteren op "missense_variant":
+    
+    ``` java -jar $snpsft filter "ANN[0].EFFECT has 'missense_variant'" "${file}_ann.vcf"  > "${file}_fmiss.vcf"
+    ``` 
+    
+    - Onderstaand het commando voor het filteren op "frameshift_variant":
+    
+    ``` java -jar $snpsft filter "ANN[0].EFFECT has 'frameshift_variant'" "${file}_ann.vcf"  > "${file}_fframe.vcf"
+    ``` 
+    
+    - Deze 2 verschillende varianten files worden uiteindelijk bij elkaar gevoegd met het volgende commando:
+
+    ``` merge "${file}_fmiss.vcf" "${file}_fframe.vcf" "${file}_merged.vcf"
+    ```
+    
+    - De nu overbodige files worden tussentijds ook verwijderd om ruimte te besparen:
+    
+    ``` rm -f "${file}_chr21.vcf" "${file}_ann.vcf" "${file}_fmiss.vcf" "${file}_fframe.vcf"
+    ```
+    
+    - 10 random samples worden vervolgens gekozen uit de gemergede file 
+    - script 1: extract versions: haalt 10 measures uit de vcf files en zet ze om in data die readable moet zijn voor Usagi, verwijdert header. Usagi kan helaas niet met vcf files overweg, dus format dit script ze ook naar .csv files zodat het voor Usagi wel readable is. 
+    - dbconnect: haalt de data uit conditions.csv en persons.cns --> zet het tegenoverlkaar uit --> format de data, plaatst deze in database
+    
 
 
 # Hoe gebruik je de pipeline?

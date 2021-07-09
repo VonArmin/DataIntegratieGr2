@@ -108,6 +108,34 @@ De flow van het project vindt grotendeels plaats in bash. Voor het goed uitvoere
 
 # Database
 
-Het is ons niet gelukt om de data te mappen naar het OMOP CDM.
-We zijn wel begonnen aan een python script om verbinding te maken en queries uit te voeren om de data er in te zetten.
-Het script is niet compleetomdat we niet echt konden testen met de juiste data, de queries die er in staan werken wel.
+Na het mappen werd de data opgeslagen in het OMOP CDM, een postgresql server.
+Met een python bestand werd connectie gemaakt met de database en werd met behulp van querry's de data gecommit naar verschillende tabellen.
+
+De data van de patienten werd uiteindelijk opgeslagen in de tabellen:
+- person
+- condition_occurrence
+- measurement
+
+De Tabel person bevat de persoonlijke informatie over de patienten. In de tabel worden de volgende gegevens opgeslagen:
+- person_id
+- gender_concept_id
+- year_of_birth
+- month_of_birth
+- race_concept_id
+- ethnicity_concept_id
+
+De Tabel condition_occurence bevat de informatie over de ziektes. In de tabel worden de volgende gegevens opgeslagen:
+- condition_occurrence_id
+- person_id
+- condition_concept_id
+- condition_start_date
+- condition_type_concept_id
+- stop_reason
+
+De Tabel measurement zou informatie bevatten over de gekozen varianten, omdat deze niet gemapt konden worden hebben we als proof of concept andere data in de tabel opgeslagen. In de tabel worden de volgende gegevens opgeslagen:
+- measurement_id
+- person_id
+- measurement_concept_id
+- measurement_date
+- measurement_type_concept_id
+

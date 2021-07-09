@@ -22,20 +22,20 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
 
 
 # Hoe gebruik je de pipeline?
-- De pipeline bestaat uit een bashscript dat aangeroepen dient te worden vanaf de linux commandline.
-  -  Commando om de pipeline uit te voeren: $ bash /pipeline.sh
-- Input: De pipeline bestaat uit .vcf files met patiënten data. 
-  - De .vcf files bevatten de 8 standaard velden aanwezig in het .vcf file formaat, die informatie over de patiënten beschrijven. Deze velden bevatten:
-    - Chromosoom nummer.
-    - Positie op het chromosoom.
-    - ID, een identifier bijvoorbeeld in dnSNP format. 
-    - REF: Het referentie allel. Dit kan ook een groter aantal basen beslaan in het geval van een InDel event.
-    - ALT: Het aangepaste allel zoals deze is aangetroffen in de patiënt. Deze komen voor in de vorm van SNPs, InDels, en artefacten. 
-    - QUAL: Een PHRED-kwaliteitscore. 
-    - FILTER: Definieert of een gemaakte call alle filters heeft doorlopen. In het geval alle filters doorlopen zijn geeft dit een PASS aan, anders wordt de filter die niet gepasseerd is aangegeven in dit veld.  
-    - INFO: Dit veld is gevuld met extra informatie omtrent de aangetroffen mutatie. 
-  - De .vcf files dienen in dezelfde directory te staan als de pipeline.
-- Output: De 
+De pipeline bestaat uit een bashscript dat aangeroepen dient te worden vanaf de linux commandline.
+-  Commando om de pipeline uit te voeren: $ bash /pipeline.sh
+Input: De pipeline bestaat uit .vcf files met patiënten data. 
+- De .vcf files bevatten de 8 standaard velden aanwezig in het .vcf file formaat, die informatie over de patiënten beschrijven. Deze velden bevatten:
+  - Chromosoom nummer.
+  - Positie op het chromosoom.
+  - ID, een identifier bijvoorbeeld in dnSNP format. 
+  - REF: Het referentie allel. Dit kan ook een groter aantal basen beslaan in het geval van een InDel event.
+  - ALT: Het aangepaste allel zoals deze is aangetroffen in de patiënt. Deze komen voor in de vorm van SNPs, InDels, en artefacten. 
+  - QUAL: Een PHRED-kwaliteitscore. 
+  - FILTER: Definieert of een gemaakte call alle filters heeft doorlopen. In het geval alle filters doorlopen zijn geeft dit een PASS aan, anders wordt de filter die niet gepasseerd is aangegeven in dit veld.  
+  - INFO: Dit veld is gevuld met extra informatie omtrent de aangetroffen mutatie. 
+- De .vcf files dienen in dezelfde directory te staan als de pipeline.
+Output: De output van de pipeline zijn gevulde measurements, person, en condition_occurrence in de postgres PostgreSQL database.
 
 # Requirements
 Gezien de flow van het project grotendeels plaats vindt in bash zijn er een aantal vereisten voor het script om uitgevoerd te kunnen worden. 

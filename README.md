@@ -25,8 +25,7 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
     - Met grep worden uit iedere file alleen de data op chromosoom 21 opgeslagen en naar een output.vcf bestand geparsed.
     - Vervolgens wordt met SnpEff -ann de data geannoteerd, zie hiervoor het onderstaande voorbeeld commando:
 
-    ``` 		java -jar $snpeff GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose "${file}_chr21.vcf" > "${file}_ann.vcf"
-    ```
+    ``` 		java -jar $snpeff GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose "${file}_chr21.vcf" > "${file}_ann.vcf" ```
     
     - Deze data is dan geannoteerd. Na het annoteren van de patiënten data wordt deze met SnpSift filter gefilterd op "missense_variant" en "frameshift_variant", dit wordt sequentieel met 2 commando's uitgevoerd. Dit resulteert in 2 files ieder met unieke varianten die bij elkaar gevoegd moeten worden.  
     - Onderstaand het commando voor het filteren op "missense_variant":

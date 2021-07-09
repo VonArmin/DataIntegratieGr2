@@ -1,0 +1,10 @@
+Participant,Birth month,Birth year,Sex,Ethnicity,Blood type,Blood pressure (mmHg),Weight (kg),Height (cm),Body type,Conditions or Symptom
+PGPC-2,10,1974,M,White,A+,120/70,79,178,Average,Dicuspid aortal valve
+PGPC-2,10,1974,M,White,A+,120/70,79,178,Average,Ventral septal defect 
+PGPC-12,5,1970,M,White,0+,120/80,82,183,Average,MMR
+PGPC-12,5,1970,M,White,0+,120/80,82,183,Average,dTPP
+PGPC-12,5,1970,M,White,0+,120/80,82,183,Average,HBV
+PGPC-22,3,1949,M,White,A+,115/75,74,189,Muscular,Atrial fibrillation (after intense physical training)
+PGPC-22,3,1949,M,White,A+,115/75,74,189,Muscular,Pneumothorax (after airplane crash)
+PGPC-22,3,1949,M,White,A+,115/75,74,189,Muscular,Meniscus injury (55y)
+PGPC-22,3,1949,M,White,A+,115/75,74,189,Muscular,Herniated disk lower back (60 y)

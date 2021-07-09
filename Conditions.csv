@@ -1,0 +1,10 @@
+sourceCode,sourceName,sourceFrequency,sourceAutoAssignedConceptIds,matchScore,mappingStatus,equivalence,statusSetBy,statusSetOn,conceptId,conceptName,domainId,mappingType,comment,createdBy,createdOn,assignedReviewer
+MMR,MMR,-1,,0.58,APPROVED,EQUAL,Armin,1625836871266,4063385,No consent for MMR,Observation,MAPS_TO,,<auto>,1625836859963,
+dTPP,dTPP,-1,,0.43,APPROVED,EQUAL,Armin,1625836871266,41995078,Stadtpark,Geography,MAPS_TO,,<auto>,1625836860918,
+Ventral septal defect ,Ventral septal defect ,-1,,0.81,APPROVED,EQUAL,Armin,1625836871266,4289309,Atrial septal defect,Condition,MAPS_TO,,<auto>,1625836861528,
+Dicuspid aortal valve,Dicuspid aortal valve,-1,,0.81,APPROVED,EQUAL,Armin,1625836871266,4218450,Bicuspid aortic valve,Condition,MAPS_TO,,<auto>,1625836863019,
+Meniscus injury (55y),Meniscus injury (55y),-1,,0.32,APPROVED,EQUAL,Armin,1625836871266,4003839,Injury of penis,Condition,MAPS_TO,,<auto>,1625836863100,
+Atrial fibrillation (after intense physical training),Atrial fibrillation (after intense physical training),-1,,0.56,APPROVED,EQUAL,Armin,1625836871266,313217,Atrial fibrillation,Condition,MAPS_TO,,<auto>,1625836864902,
+Herniated disk lower back (60 y),Herniated disk lower back (60 y),-1,,0.38,APPROVED,EQUAL,Armin,1625836871266,4136287,Lower back (surface region),Spec Anatomic Site,MAPS_TO,,<auto>,1625836865404,
+Pneumothorax (after airplane crash),Pneumothorax (after airplane crash),-1,,0.52,APPROVED,EQUAL,Armin,1625836871266,253796,Pneumothorax,Condition,MAPS_TO,,<auto>,1625836865412,
+HBV,HBV,-1,,0.53,APPROVED,EQUAL,Armin,1625836871266,4217475,Hepatitis B virus,Observation,MAPS_TO,,<auto>,1625836865466,

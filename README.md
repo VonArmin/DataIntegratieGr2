@@ -9,7 +9,7 @@ Projectleden
 # Opdrachtomschrijving
 Het doel van het project data-integratie Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst. 
 - patiënten data van website: https://personalgenomes.ca/data
-- Van de website werd informatie van patienten: 2, 12 en 22 opgehaald en gebruikt voor het maken van de pipeline
+- Van de website werd informatie van patiënten: 2, 12 en 22 opgehaald en gebruikt voor het maken van de pipeline.
 
 # Workflow
 - UseGalaxy

@@ -25,7 +25,7 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
     - Vervolgens wordt met SnpEff -ann de data geannoteerd, zie hiervoor het onderstaande voorbeeld commando:
     ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf```
     - Deze data is dan geannoteerd. Na het annoteren van de patiënten data wordt deze met SnpSift filter gefilterd op "missense_variant" en "frameshift_variant". Zie ook hiervoor het onderstaande voorbeeld commando:
-    ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf`
+    ``` java -jar snpEff.jar GRCh37.75 -no-downstream -no-intergenic -no-intron -no-upstream -no-utr -verbose ../PGPC_0002_S1.flt_output.vcf > ../PGPC_0002_S1.flt_output_ann.vcf``` 
     - sample text
 
 

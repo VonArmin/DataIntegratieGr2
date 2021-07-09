@@ -7,7 +7,7 @@ Projectleden
 - Rutger Kemperman
 
 # Opdrachtomschrijving
-Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst. 
+Het doel van het project data-integratie Hyve was het bouwen van een ETL/workflow waarmee input patiënten data (in .VCF format) gemanipuleerd wordt en de output naar een database geparsed wordt. Gedurende het proces moet de input data geannoteerd en gefilterd worden, en vervolgens ook worden gemapt op syntactische en semantische wijze. Uiteindelijk wordt na het mappen de data in de database geplaatst. 
 - patiënten data van website: 
 
 # Workflow

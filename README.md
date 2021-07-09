@@ -35,7 +35,7 @@ Input: De pipeline bestaat uit .vcf files met patiënten data.
   - FILTER: Definieert of een gemaakte call alle filters heeft doorlopen. In het geval alle filters doorlopen zijn geeft dit een PASS aan, anders wordt de filter die niet gepasseerd is aangegeven in dit veld.  
   - INFO: Dit veld is gevuld met extra informatie omtrent de aangetroffen mutatie. 
 - De .vcf files dienen in dezelfde directory te staan als de pipeline.
-Output: De output van de pipeline zijn gevulde measurements, person, en condition_occurrence in de postgres PostgreSQL database.
+Output: De output van de pipeline zijn gevulde measurements, person, en condition_occurrence tabellen in de postgres PostgreSQL database.
 
 # Requirements
 Gezien de flow van het project grotendeels plaats vindt in bash zijn er een aantal vereisten voor het script om uitgevoerd te kunnen worden. 

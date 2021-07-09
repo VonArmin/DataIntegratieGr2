@@ -45,15 +45,11 @@ Het doel van het project data-integraty Hyve was het bouwen van een ETL/workflow
     ``` rm -f "${file}_chr21.vcf" "${file}_ann.vcf" "${file}_fmiss.vcf" "${file}_fframe.vcf" ```
     
     - Vervolgens wordt het pythonscript 'extract_versions.py' aangeroepen om 10 random samples uit de gemergede file te halen. Dit wordt gedaan door allereerst de gemergede file te openen, eveneens als een output file, en naar de output file een header weg te schrijven. Vervolgens worden de 10 random samples uit de gemergede file weggeschreven naar de output file. Deze output file is in .csv format zodat deze in Usagi geladen kan worden. Zie hiervoor ook het script. 
-
     - Usagi wordt vervolgens opgestart en het script wordt tijdelijk gehalt. Nu Usagi geopend is zijn er in Usagi een paar menselijke handelingen vereist om door te kunnen gaan. Zie hiervoor ook het onderstaande kopje Usagi. 
-
-
-    - script 1: extract versions: haalt 10 measures uit de vcf files en zet ze om in data die readable moet zijn voor Usagi, verwijdert header. Usagi kan helaas niet met vcf files overweg, dus format dit script ze ook naar .csv files zodat het voor Usagi wel readable is. 
-    - dbconnect: haalt de data uit conditions.csv en persons.cns --> zet het tegenoverlkaar uit --> format de data, plaatst deze in database
+    - Vanuit Usagi is er na de afgelopen stap een file geproduceerd genaamd "conditions.csv". Deze data kan in de tabel gezet worden vervolgens.
+    - Usagi wordt gesloten en de pipeline zal zichzelf hervatten. Middels het volgende python script, 'DB_connect.py', wordt de data uit de Usagi file in de bijbehorende tabellen geplaatst. Zie voor de querries het script. 
+    - Einde script, de data staat in de tabellen in de OMOP database. Dit kan handmatig geverifieerd worden door de database te querryen.  
     
-
-
 # Hoe gebruik je de pipeline?
 De pipeline bestaat uit een bashscript dat aangeroepen dient te worden vanaf de linux commandline.
 -  Commando om de pipeline uit te voeren: $ bash /pipeline.sh
@@ -89,7 +85,7 @@ Uiteindelijk is Usagi gebruikt om de patiëntendata uit de vcf files te mappen t
 - Stap 2: De index is gebuild, nu kan er een eigen file ingeladen worden. Ga hiervoor naar "File" > "Import codes", en selecteer een file waarmee gemapt kan worden. 
 - Stap 3: Usagi vergelijkt per source de ingeladen filedata met de beschikbare vocabularies en wijst vervolgens automatisch het concept uit de vocabulaire met de hoogste score aan de source data toe. Handmdatig kunnen meerdere concepten toegevoegd worden aan iedere source, dit is niet verplicht.
 - Stap 4: Vervolgens dienen deze concepten manueel gecureerd te worden, dit wordt gedaan door de concepten wel of niet goed te keuren. In Usagi kunnen de concepten die toegekend zijn aan de ingeladen sourcedata handmatig gevalideerd worden door op de "Approve" knop te drukken, nu zijn de concepten gemapt naar de source data.
-- Stap 5: De concept data kan nu geëxporteerd worden naar een csv file door naar "File" > "Save As..." te gaan en de file op te slaan.
+- Stap 5: De concept data kan nu geëxporteerd worden naar een csv file door naar "File" > "Save As..." te gaan en de file op te slaan. Geef deze file de naam "conditions.csv", in het geval de file anders benoemd wordt zal het script stuk lopen. 
 
 # Requirements
 De flow van het project vindt grotendeels plaats in bash. Voor het goed uitvoeren van het script zijn een aantal vereisten opgestld.
@@ -107,16 +103,15 @@ De flow van het project vindt grotendeels plaats in bash. Voor het goed uitvoere
 
 
 # Database
+Na het mappen is de data opgeslagen in het OMOP CDM, een postgresql server.
+Met een python bestand is connectie gemaakt met de database en is met behulp van querries de data gecommit naar verschillende tabellen.
 
-Na het mappen werd de data opgeslagen in het OMOP CDM, een postgresql server.
-Met een python bestand werd connectie gemaakt met de database en werd met behulp van querry's de data gecommit naar verschillende tabellen.
-
-De data van de patienten werd uiteindelijk opgeslagen in de tabellen:
+De data van de patiënten werd uiteindelijk opgeslagen in de tabellen:
 - person
 - condition_occurrence
 - measurement
 
-De Tabel person bevat de persoonlijke informatie over de patienten. In de tabel worden de volgende gegevens opgeslagen:
+De Tabel "person" bevat de persoonlijke informatie over de patienten. In de tabel worden de volgende gegevens opgeslagen:
 - person_id
 - gender_concept_id
 - year_of_birth
@@ -124,7 +119,7 @@ De Tabel person bevat de persoonlijke informatie over de patienten. In de tabel 
 - race_concept_id
 - ethnicity_concept_id
 
-De Tabel condition_occurence bevat de informatie over de ziektes. In de tabel worden de volgende gegevens opgeslagen:
+De Tabel "condition_occurence" bevat de informatie over de ziektes. In de tabel worden de volgende gegevens opgeslagen:
 - condition_occurrence_id
 - person_id
 - condition_concept_id
@@ -132,7 +127,7 @@ De Tabel condition_occurence bevat de informatie over de ziektes. In de tabel wo
 - condition_type_concept_id
 - stop_reason
 
-De Tabel measurement zou informatie bevatten over de gekozen varianten, omdat deze niet gemapt konden worden hebben we als proof of concept andere data in de tabel opgeslagen. In de tabel worden de volgende gegevens opgeslagen:
+De Tabel "measurement" zou informatie bevatten over de gekozen varianten, omdat deze niet gemapt konden worden is er als proof of concept andere data in de tabel opgeslagen. In de tabel worden de volgende gegevens opgeslagen:
 - measurement_id
 - person_id
 - measurement_concept_id
